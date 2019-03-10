@@ -8,6 +8,11 @@
 
 import UIKit
 import BarcodeScanner
+import Alamofire
+
+struct Bookdump {
+    static let API_ROOT = "http://10.1.1.196:5000";
+}
 
 class ViewController: UIViewController {
     @IBOutlet var presentScannerButton: UIButton!
@@ -37,11 +42,19 @@ class ViewController: UIViewController {
 // MARK: - BarcodeScannerCodeDelegate
 extension ViewController: BarcodeScannerCodeDelegate {
     func scanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
+
         print("Barcode Data: \(code)")
         print("Symbology Type: \(type)")
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-            controller.resetWithError()
+
+        let url = "\(Bookdump.API_ROOT)/book"
+        let params = [ "isbn": code ]
+        let encoding = JSONEncoding.default
+        Alamofire.request(url, method: .post, parameters: params, encoding: encoding).response { response in
+            if (response.response?.statusCode != 201) {
+                controller.resetWithError();
+            } else {
+                controller.reset(animated: true)
+            }
         }
     }
 }
