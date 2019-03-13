@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		271A4DD7607D0804DA0B9E88 /* Pods_Bookbeep.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1B653CC5D5853B626E4D19 /* Pods_Bookbeep.framework */; };
+		DC01BAD02239A448001FEA94 /* Pods_Bookbeep.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1B653CC5D5853B626E4D19 /* Pods_Bookbeep.framework */; };
+		DC1DB9C02238376600300224 /* BookbeepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1DB9BF2238376600300224 /* BookbeepTests.swift */; };
+		DC1DB9C9223841E300300224 /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1DB9C8223841E300300224 /* BookTableViewCell.swift */; };
+		DC1DB9CB223847EE00300224 /* BookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1DB9CA223847EE00300224 /* BookTableViewController.swift */; };
+		DC37004022382A890039BFF0 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37003F22382A890039BFF0 /* Book.swift */; };
 		DC8951452233EFA700E33D14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8951442233EFA700E33D14 /* AppDelegate.swift */; };
 		DC8951472233EFA700E33D14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8951462233EFA700E33D14 /* ViewController.swift */; };
 		DC89514A2233EFA700E33D14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC8951482233EFA700E33D14 /* Main.storyboard */; };
@@ -15,9 +19,26 @@
 		DC89514F2233EFA800E33D14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC89514D2233EFA800E33D14 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		DC1DB9C22238376600300224 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC8951392233EFA700E33D14 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC8951402233EFA700E33D14;
+			remoteInfo = Bookbeep;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1C1B653CC5D5853B626E4D19 /* Pods_Bookbeep.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookbeep.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B21444EC86BB911CB1DC8FC2 /* Pods-Bookbeep.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookbeep.release.xcconfig"; path = "Target Support Files/Pods-Bookbeep/Pods-Bookbeep.release.xcconfig"; sourceTree = "<group>"; };
+		DC1DB9B7223836B500300224 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		DC1DB9BD2238376600300224 /* BookbeepTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookbeepTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC1DB9BF2238376600300224 /* BookbeepTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookbeepTests.swift; sourceTree = "<group>"; };
+		DC1DB9C12238376600300224 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC1DB9C8223841E300300224 /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
+		DC1DB9CA223847EE00300224 /* BookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewController.swift; sourceTree = "<group>"; };
+		DC37003F22382A890039BFF0 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		DC8951412233EFA700E33D14 /* Bookbeep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookbeep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC8951442233EFA700E33D14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC8951462233EFA700E33D14 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,11 +50,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DC1DB9BA2238376600300224 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DC89513E2233EFA700E33D14 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				271A4DD7607D0804DA0B9E88 /* Pods_Bookbeep.framework in Frameworks */,
+				DC01BAD02239A448001FEA94 /* Pods_Bookbeep.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,15 +71,26 @@
 		C0F83A3401E8D986F0751DB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DC1DB9B7223836B500300224 /* XCTest.framework */,
 				1C1B653CC5D5853B626E4D19 /* Pods_Bookbeep.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC1DB9BE2238376600300224 /* BookbeepTests */ = {
+			isa = PBXGroup;
+			children = (
+				DC1DB9BF2238376600300224 /* BookbeepTests.swift */,
+				DC1DB9C12238376600300224 /* Info.plist */,
+			);
+			path = BookbeepTests;
 			sourceTree = "<group>";
 		};
 		DC8951382233EFA700E33D14 = {
 			isa = PBXGroup;
 			children = (
 				DC8951432233EFA700E33D14 /* Bookbeep */,
+				DC1DB9BE2238376600300224 /* BookbeepTests */,
 				DC8951422233EFA700E33D14 /* Products */,
 				F112DB5A744E8A536B20E776 /* Pods */,
 				C0F83A3401E8D986F0751DB1 /* Frameworks */,
@@ -62,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				DC8951412233EFA700E33D14 /* Bookbeep.app */,
+				DC1DB9BD2238376600300224 /* BookbeepTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -75,6 +115,9 @@
 				DC89514B2233EFA800E33D14 /* Assets.xcassets */,
 				DC89514D2233EFA800E33D14 /* LaunchScreen.storyboard */,
 				DC8951502233EFA800E33D14 /* Info.plist */,
+				DC37003F22382A890039BFF0 /* Book.swift */,
+				DC1DB9C8223841E300300224 /* BookTableViewCell.swift */,
+				DC1DB9CA223847EE00300224 /* BookTableViewController.swift */,
 			);
 			path = Bookbeep;
 			sourceTree = "<group>";
@@ -85,13 +128,30 @@
 				F8BAC41A7AD48333FB67CF57 /* Pods-Bookbeep.debug.xcconfig */,
 				B21444EC86BB911CB1DC8FC2 /* Pods-Bookbeep.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		DC1DB9BC2238376600300224 /* BookbeepTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC1DB9C42238376600300224 /* Build configuration list for PBXNativeTarget "BookbeepTests" */;
+			buildPhases = (
+				DC1DB9B92238376600300224 /* Sources */,
+				DC1DB9BA2238376600300224 /* Frameworks */,
+				DC1DB9BB2238376600300224 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC1DB9C32238376600300224 /* PBXTargetDependency */,
+			);
+			name = BookbeepTests;
+			productName = BookbeepTests;
+			productReference = DC1DB9BD2238376600300224 /* BookbeepTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		DC8951402233EFA700E33D14 /* Bookbeep */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC8951532233EFA800E33D14 /* Build configuration list for PBXNativeTarget "Bookbeep" */;
@@ -121,6 +181,10 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Petteri Susi";
 				TargetAttributes = {
+					DC1DB9BC2238376600300224 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = DC8951402233EFA700E33D14;
+					};
 					DC8951402233EFA700E33D14 = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -140,11 +204,19 @@
 			projectRoot = "";
 			targets = (
 				DC8951402233EFA700E33D14 /* Bookbeep */,
+				DC1DB9BC2238376600300224 /* BookbeepTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DC1DB9BB2238376600300224 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DC89513F2233EFA700E33D14 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -168,14 +240,18 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Bookbeep/Pods-Bookbeep-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/BarcodeScanner/BarcodeScanner.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BarcodeScanner.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -207,16 +283,35 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DC1DB9B92238376600300224 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC1DB9C02238376600300224 /* BookbeepTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DC89513D2233EFA700E33D14 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC1DB9CB223847EE00300224 /* BookTableViewController.swift in Sources */,
+				DC1DB9C9223841E300300224 /* BookTableViewCell.swift in Sources */,
 				DC8951472233EFA700E33D14 /* ViewController.swift in Sources */,
 				DC8951452233EFA700E33D14 /* AppDelegate.swift in Sources */,
+				DC37004022382A890039BFF0 /* Book.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DC1DB9C32238376600300224 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC8951402233EFA700E33D14 /* Bookbeep */;
+			targetProxy = DC1DB9C22238376600300224 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DC8951482233EFA700E33D14 /* Main.storyboard */ = {
@@ -238,6 +333,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		DC1DB9C52238376600300224 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A59M27BWM2;
+				INFOPLIST_FILE = BookbeepTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fi.iki.susi.BookbeepTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bookbeep.app/Bookbeep";
+			};
+			name = Debug;
+		};
+		DC1DB9C62238376600300224 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A59M27BWM2;
+				INFOPLIST_FILE = BookbeepTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = fi.iki.susi.BookbeepTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bookbeep.app/Bookbeep";
+			};
+			name = Release;
+		};
 		DC8951512233EFA800E33D14 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -399,6 +534,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DC1DB9C42238376600300224 /* Build configuration list for PBXNativeTarget "BookbeepTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC1DB9C52238376600300224 /* Debug */,
+				DC1DB9C62238376600300224 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DC89513C2233EFA700E33D14 /* Build configuration list for PBXProject "Bookbeep" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

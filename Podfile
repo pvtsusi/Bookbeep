@@ -8,5 +8,6 @@ target 'Bookbeep' do
   # Pods for Bookbeep
   pod 'BarcodeScanner', git: 'https://github.com/rjstelling/BarcodeScanner.git', commit: 'a1d7512710704cdb16623da66103b74e96439191'
   pod 'Alamofire'
+  pod 'Alamofire-SwiftyJSON'
 
 end

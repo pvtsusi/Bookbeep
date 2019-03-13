@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TQr-Fw-zBp">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TQr-Fw-zBp">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,30 +13,23 @@
         <!--Barcode Scanner-->
         <scene sceneID="EDs-Dh-c7U">
             <objects>
-                <viewController storyboardIdentifier="ViewController" title="Barcode Scanner" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l7u-ZM-WHJ" customClass="ViewController" customModule="BarcodeScannerExample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" title="Barcode Scanner" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l7u-ZM-WHJ" customClass="ViewController" customModule="Bookbeep" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wQg-iw-69x"/>
                         <viewControllerLayoutGuide type="bottom" id="kNU-Nn-l1D"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4hZ-wG-weU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CKC-pj-aA1">
-                                <rect key="frame" x="98" y="283.5" width="179" height="100"/>
+                                <rect key="frame" x="70.5" y="234" width="179" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IP-XH-yBM">
-                                        <rect key="frame" x="9.5" y="0.0" width="160" height="30"/>
+                                        <rect key="frame" x="9.5" y="0.0" width="160" height="100"/>
                                         <state key="normal" title="Scan (Push Navigation)"/>
                                         <connections>
                                             <action selector="handleScannerPush:forEvent:" destination="l7u-ZM-WHJ" eventType="touchUpInside" id="gOC-4v-gYj"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1d-UF-yFD">
-                                        <rect key="frame" x="0.0" y="70" width="179" height="30"/>
-                                        <state key="normal" title="Scan (Present Navigation)"/>
-                                        <connections>
-                                            <action selector="handleScannerPresent:forEvent:" destination="l7u-ZM-WHJ" eventType="touchUpInside" id="buT-sn-5kJ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -55,7 +48,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Barcode Scanner" id="UUc-vE-aWV"/>
                     <connections>
-                        <outlet property="presentScannerButton" destination="Y1d-UF-yFD" id="Azo-Nc-qAy"/>
                         <outlet property="pushScannerButton" destination="1IP-XH-yBM" id="Ca5-5K-CFs"/>
                     </connections>
                 </viewController>
@@ -63,18 +55,67 @@
             </objects>
             <point key="canvasLocation" x="696.79999999999995" y="202.84857571214394"/>
         </scene>
+        <!--Candidates-->
+        <scene sceneID="ZeK-xq-iUu">
+            <objects>
+                <tableViewController storyboardIdentifier="bookTableViewController" id="xJU-at-AcY" customClass="BookTableViewController" customModule="Bookbeep" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZkB-Sp-NsW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookTableViewCell" rowHeight="90" id="ZI4-tz-IRR" customClass="BookTableViewCell" customModule="Bookbeep" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZI4-tz-IRR" id="fiM-mx-GXo">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52b-nH-Dgp">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rze-2J-Tub">
+                                            <rect key="frame" x="16" y="39" width="343" height="40"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="authorLabel" destination="52b-nH-Dgp" id="qp6-mB-BYd"/>
+                                    <outlet property="titleLabel" destination="Rze-2J-Tub" id="Gan-VI-asF"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xJU-at-AcY" id="98z-m5-nyB"/>
+                            <outlet property="delegate" destination="xJU-at-AcY" id="P3D-vv-cuc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Candidates" id="080-a0-dEO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vSf-w1-mgB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1512.8" y="200.14992503748127"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Oux-Lw-pup">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TQr-Fw-zBp" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5EU-T6-rGL">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="l7u-ZM-WHJ" kind="relationship" relationship="rootViewController" id="GvB-fz-Yov"/>
+                        <segue destination="l7u-ZM-WHJ" kind="relationship" relationship="rootViewController" id="I1X-6y-N94"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vDB-4C-cZE" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -9,6 +9,8 @@
 import UIKit
 import BarcodeScanner
 import Alamofire
+import SwiftyJSON
+import Alamofire_SwiftyJSON
 
 struct Bookdump {
     static let API_ROOT = "http://10.1.1.196:5000";
@@ -17,12 +19,6 @@ struct Bookdump {
 class ViewController: UIViewController {
     @IBOutlet var presentScannerButton: UIButton!
     @IBOutlet var pushScannerButton: UIButton!
-    
-    @IBAction func handleScannerPresent(_ sender: Any, forEvent event: UIEvent) {
-        let viewController = makeBarcodeScannerViewController()
-        viewController.title = "Barcode Scanner"
-        present(viewController, animated: true, completion: nil)
-    }
     
     @IBAction func handleScannerPush(_ sender: Any, forEvent event: UIEvent) {
         let viewController = makeBarcodeScannerViewController()
@@ -46,14 +42,22 @@ extension ViewController: BarcodeScannerCodeDelegate {
         print("Barcode Data: \(code)")
         print("Symbology Type: \(type)")
 
-        let url = "\(Bookdump.API_ROOT)/book"
-        let params = [ "isbn": code ]
-        let encoding = JSONEncoding.default
-        Alamofire.request(url, method: .post, parameters: params, encoding: encoding).response { response in
-            if (response.response?.statusCode != 201) {
+        let url = "\(Bookdump.API_ROOT)/search/\(code)"
+        Alamofire.request(url).responseSwiftyJSON { response in
+            if (response.response?.statusCode != 200) {
                 controller.resetWithError();
             } else {
-                controller.reset(animated: true)
+                controller.reset()
+                let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let bookTableViewController = storyBoard.instantiateViewController(withIdentifier: "bookTableViewController") as! BookTableViewController
+                if let booksJson = response.value {
+                    for (_, bookJson): (String, JSON) in booksJson {
+                        if let book = Book(isbn: code, title: bookJson["title"].stringValue, author: bookJson["author"].stringValue) {
+                            bookTableViewController.addCandidate(book)
+                        }
+                    }
+                }
+                controller.navigationController?.pushViewController(bookTableViewController, animated: true)
             }
         }
     }
