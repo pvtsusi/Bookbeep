@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DC01BAD02239A448001FEA94 /* Pods_Bookbeep.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C1B653CC5D5853B626E4D19 /* Pods_Bookbeep.framework */; };
+		DC01BAD2223AC90A001FEA94 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01BAD1223AC90A001FEA94 /* BookViewController.swift */; };
 		DC1DB9C02238376600300224 /* BookbeepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1DB9BF2238376600300224 /* BookbeepTests.swift */; };
 		DC1DB9C9223841E300300224 /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1DB9C8223841E300300224 /* BookTableViewCell.swift */; };
 		DC1DB9CB223847EE00300224 /* BookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1DB9CA223847EE00300224 /* BookTableViewController.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		1C1B653CC5D5853B626E4D19 /* Pods_Bookbeep.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bookbeep.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B21444EC86BB911CB1DC8FC2 /* Pods-Bookbeep.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookbeep.release.xcconfig"; path = "Target Support Files/Pods-Bookbeep/Pods-Bookbeep.release.xcconfig"; sourceTree = "<group>"; };
+		DC01BAD1223AC90A001FEA94 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		DC1DB9B7223836B500300224 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		DC1DB9BD2238376600300224 /* BookbeepTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookbeepTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC1DB9BF2238376600300224 /* BookbeepTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookbeepTests.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				DC37003F22382A890039BFF0 /* Book.swift */,
 				DC1DB9C8223841E300300224 /* BookTableViewCell.swift */,
 				DC1DB9CA223847EE00300224 /* BookTableViewController.swift */,
+				DC01BAD1223AC90A001FEA94 /* BookViewController.swift */,
 			);
 			path = Bookbeep;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				DC1DB9CB223847EE00300224 /* BookTableViewController.swift in Sources */,
 				DC1DB9C9223841E300300224 /* BookTableViewCell.swift in Sources */,
 				DC8951472233EFA700E33D14 /* ViewController.swift in Sources */,
+				DC01BAD2223AC90A001FEA94 /* BookViewController.swift in Sources */,
 				DC8951452233EFA700E33D14 /* AppDelegate.swift in Sources */,
 				DC37004022382A890039BFF0 /* Book.swift in Sources */,
 			);

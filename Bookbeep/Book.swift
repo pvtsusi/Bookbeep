@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class Book {
     //MARK: Properties
@@ -26,5 +27,18 @@ class Book {
         self.isbn = isbn
         self.title = title
         self.author = author
+    }
+    
+    func toParams() -> Parameters {
+        var parameters: Parameters = [
+            "isbn": self.isbn
+        ]
+        if let title = self.title {
+            parameters["title"] = title
+        }
+        if let author = self.author {
+            parameters["author"] = author
+        }
+        return parameters
     }
 }

@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -90,6 +91,7 @@
                                 <connections>
                                     <outlet property="authorLabel" destination="52b-nH-Dgp" id="qp6-mB-BYd"/>
                                     <outlet property="titleLabel" destination="Rze-2J-Tub" id="Gan-VI-asF"/>
+                                    <segue destination="3QW-dg-PMn" kind="show" id="cQT-nD-ZRZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -102,7 +104,58 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vSf-w1-mgB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512.8" y="200.14992503748127"/>
+            <point key="canvasLocation" x="2647.5" y="202.81690140845072"/>
+        </scene>
+        <!--Book-->
+        <scene sceneID="a9H-ya-SOf">
+            <objects>
+                <viewController id="3QW-dg-PMn" customClass="BookViewController" customModule="Bookbeep" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nq7-iO-YCD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="isE-GV-5xv">
+                                <rect key="frame" x="20" y="133" width="280" height="95"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8n-lI-d2v">
+                                        <rect key="frame" x="119" y="0.0" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCE-aM-FDb">
+                                        <rect key="frame" x="119" y="74.5" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="isE-GV-5xv" firstAttribute="leading" secondItem="ymr-39-jZn" secondAttribute="leading" constant="20" id="6VD-4w-YLv"/>
+                            <constraint firstItem="ymr-39-jZn" firstAttribute="bottom" secondItem="isE-GV-5xv" secondAttribute="bottom" constant="340" id="WC6-cI-CdL"/>
+                            <constraint firstItem="isE-GV-5xv" firstAttribute="top" secondItem="ymr-39-jZn" secondAttribute="top" constant="69" id="j6g-gX-Mpe"/>
+                            <constraint firstItem="ymr-39-jZn" firstAttribute="trailing" secondItem="isE-GV-5xv" secondAttribute="trailing" constant="20" id="jpt-i2-vem"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ymr-39-jZn"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Book" id="5Vb-BR-I89">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="OC1-26-5jY">
+                            <connections>
+                                <action selector="saveBook:" destination="3QW-dg-PMn" id="jkJ-5l-xNt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="authorLabel" destination="g8n-lI-d2v" id="iTI-zi-DcP"/>
+                        <outlet property="titleLabel" destination="wCE-aM-FDb" id="qpq-Yv-Yx6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LN5-j9-6bl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3603.75" y="199.64788732394368"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Oux-Lw-pup">
@@ -121,6 +174,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vDB-4C-cZE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-86" y="203"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cXP-Kn-0lH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hZW-zw-bRg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0rp-JC-3iD">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xJU-at-AcY" kind="relationship" relationship="rootViewController" id="1Nv-Pb-wCA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K8N-pr-AMX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1650" y="202.81690140845072"/>
         </scene>
     </scenes>
 </document>

@@ -12,6 +12,7 @@ class BookTableViewController: UITableViewController {
 
     //MARK: Properties
     var candidates = [Book]()
+    var selected: Book?
     
     public func addCandidate(_ candidate: Book) {
         candidates.append(candidate)
@@ -45,8 +46,7 @@ class BookTableViewController: UITableViewController {
         let candidate = candidates[indexPath.row]
         cell.authorLabel.text = candidate.author
         cell.titleLabel.text = candidate.title
-
-        // Configure the cell...
+        cell.book = candidate
 
         return cell
     }
@@ -86,16 +86,22 @@ class BookTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        guard let cell = sender as? BookTableViewCell else {
+            return;
+        }
+        guard let bookViewController = segue.destination as? BookViewController else {
+            return;
+        }
+        bookViewController.book = cell.book
     }
-    */
-    
+
     // MARK: Private methods
     
     private func loadSampleBooks() {

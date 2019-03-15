@@ -13,7 +13,7 @@ class BookTableViewCell: UITableViewCell {
     //MARK: Properties
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    
+    weak var book: Book!
     
     override func awakeFromNib() {
         super.awakeFromNib()
