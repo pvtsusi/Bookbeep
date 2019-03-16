@@ -14,9 +14,10 @@ class Book {
     var isbn: String
     var title: String?
     var author: String?
+    var language: String?
     
     //MARK: Initialization
-    init?(isbn: String, title: String? = nil, author: String? = nil) {
+    init?(isbn: String, title: String? = nil, author: String? = nil, language: String? = nil) {
         if isbn.isEmpty {
             return nil
         }
@@ -27,6 +28,7 @@ class Book {
         self.isbn = isbn
         self.title = title
         self.author = author
+        self.language = language
     }
     
     func toParams() -> Parameters {
@@ -38,6 +40,9 @@ class Book {
         }
         if let author = self.author {
             parameters["author"] = author
+        }
+        if let language = self.language {
+            parameters["language"] = language
         }
         return parameters
     }

@@ -52,7 +52,7 @@ extension ViewController: BarcodeScannerCodeDelegate {
                 let bookTableViewController = storyBoard.instantiateViewController(withIdentifier: "bookTableViewController") as! BookTableViewController
                 if let booksJson = response.value {
                     for (_, bookJson): (String, JSON) in booksJson {
-                        if let book = Book(isbn: code, title: bookJson["title"].stringValue, author: bookJson["author"].stringValue) {
+                        if let book = Book(isbn: code, title: bookJson["title"].stringValue, author: bookJson["author"].stringValue, language: bookJson["language"].stringValue) {
                             bookTableViewController.addCandidate(book)
                         }
                     }
