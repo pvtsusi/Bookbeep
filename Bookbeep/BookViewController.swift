@@ -16,17 +16,19 @@ class BookViewController: UIViewController {
     
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var recommendedSwitch: UISwitch!
     var book: Book?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         authorLabel.text = book?.author
         titleLabel.text = book?.title
+        recommendedSwitch.isOn = book?.recommended ?? false
     }
     
     @IBAction func saveBook(_ sender: Any) {
         let url = "\(Bookdump.API_ROOT)/book"
-        let params = book?.toParams()
+        let params = book?.toParams(overrideRecommended: recommendedSwitch.isOn)
         let enc = JSONEncoding.default
         let headers: HTTPHeaders = [
             "Accept": "application/json"

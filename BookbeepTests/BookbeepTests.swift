@@ -29,6 +29,17 @@ class BookbeepTests: XCTestCase {
         XCTAssertNil(Book.init(isbn: ""))
         XCTAssertNil(Book.init(isbn: "not an ISBN"))
     }
-
     
+    func testRecommendedOverride() {
+        let notRecommended = Book.init(isbn: "9789510437193")!
+        XCTAssertFalse(notRecommended.recommended)
+        let recommended = Book.init(isbn: "9789510437193", recommended: true)!
+        XCTAssert(recommended.recommended)
+        
+        XCTAssertFalse(notRecommended.toParams()["recommended"] as! Bool)
+        XCTAssertTrue(recommended.toParams()["recommended"] as! Bool)
+        
+        XCTAssertTrue(notRecommended.toParams(overrideRecommended: true)["recommended"] as! Bool)
+        XCTAssertFalse(recommended.toParams(overrideRecommended: false)["recommended"] as! Bool)
+    }
 }

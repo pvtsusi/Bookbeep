@@ -15,9 +15,10 @@ class Book {
     var title: String?
     var author: String?
     var language: String?
+    var recommended: Bool
     
     //MARK: Initialization
-    init?(isbn: String, title: String? = nil, author: String? = nil, language: String? = nil) {
+    init?(isbn: String, title: String? = nil, author: String? = nil, language: String? = nil, recommended: Bool = false) {
         if isbn.isEmpty {
             return nil
         }
@@ -29,12 +30,18 @@ class Book {
         self.title = title
         self.author = author
         self.language = language
+        self.recommended = recommended
     }
     
-    func toParams() -> Parameters {
+    func toParams(overrideRecommended: Optional<Bool>? = Optional.none) -> Parameters {
         var parameters: Parameters = [
             "isbn": self.isbn
         ]
+        if let recommended = overrideRecommended {
+            parameters["recommended"] = recommended
+        } else {
+            parameters["recommended"] = self.recommended
+        }
         if let title = self.title {
             parameters["title"] = title
         }
