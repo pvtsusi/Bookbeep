@@ -115,10 +115,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="isE-GV-5xv">
-                                <rect key="frame" x="16" y="133" width="288" height="49"/>
+                                <rect key="frame" x="16" y="114" width="288" height="49.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8n-lI-d2v">
-                                        <rect key="frame" x="118.5" y="0.0" width="51.5" height="20.5"/>
+                                        <rect key="frame" x="118.5" y="0.0" width="51.5" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="HlP-iL-S5H"/>
                                         </constraints>
@@ -127,7 +127,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wCE-aM-FDb">
-                                        <rect key="frame" x="123" y="28.5" width="42" height="20.5"/>
+                                        <rect key="frame" x="123" y="29" width="42" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -135,7 +135,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6v7-Vs-7JR">
-                                <rect key="frame" x="100" y="302" width="200" height="50"/>
+                                <rect key="frame" x="100" y="507.5" width="200" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recommended" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21a-CF-o1o">
                                         <rect key="frame" x="0.0" y="15" width="143" height="20.5"/>
@@ -158,10 +158,9 @@
                         <constraints>
                             <constraint firstItem="isE-GV-5xv" firstAttribute="trailing" secondItem="nq7-iO-YCD" secondAttribute="trailingMargin" id="3im-DG-mCO"/>
                             <constraint firstItem="ymr-39-jZn" firstAttribute="trailing" secondItem="6v7-Vs-7JR" secondAttribute="trailing" constant="20" id="GLu-dN-nD4"/>
-                            <constraint firstItem="ymr-39-jZn" firstAttribute="centerY" secondItem="isE-GV-5xv" secondAttribute="bottom" constant="170" id="Pom-Ik-R7q"/>
                             <constraint firstItem="isE-GV-5xv" firstAttribute="leading" secondItem="nq7-iO-YCD" secondAttribute="leadingMargin" id="WpE-9G-CSd"/>
-                            <constraint firstItem="ymr-39-jZn" firstAttribute="centerY" secondItem="6v7-Vs-7JR" secondAttribute="bottom" id="b8q-ZL-nsR"/>
-                            <constraint firstItem="isE-GV-5xv" firstAttribute="top" secondItem="ymr-39-jZn" secondAttribute="top" constant="69" id="sQh-Uh-Zp1"/>
+                            <constraint firstItem="isE-GV-5xv" firstAttribute="top" secondItem="ymr-39-jZn" secondAttribute="top" constant="50" id="X4d-SO-nHH"/>
+                            <constraint firstAttribute="baseline" secondItem="6v7-Vs-7JR" secondAttribute="baseline" constant="20" id="b8q-ZL-nsR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ymr-39-jZn"/>
                     </view>
