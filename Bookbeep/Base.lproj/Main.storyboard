@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TQr-Fw-zBp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TQr-Fw-zBp">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,10 +27,17 @@
                                 <rect key="frame" x="70.5" y="234" width="179" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IP-XH-yBM">
-                                        <rect key="frame" x="42" y="0.0" width="95" height="100"/>
+                                        <rect key="frame" x="42" y="0.0" width="95" height="30"/>
                                         <state key="normal" title="Scan barcode"/>
                                         <connections>
                                             <action selector="handleScannerPush:forEvent:" destination="l7u-ZM-WHJ" eventType="touchUpInside" id="gOC-4v-gYj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCM-ZR-vLC">
+                                        <rect key="frame" x="45.5" y="70" width="88" height="30"/>
+                                        <state key="normal" title="Take a photo"/>
+                                        <connections>
+                                            <action selector="handleTakePhoto:" destination="l7u-ZM-WHJ" eventType="touchUpInside" id="Oea-ah-1He"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -49,6 +56,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Barcode Scanner" id="UUc-vE-aWV"/>
                     <connections>
+                        <outlet property="photoButton" destination="jCM-ZR-vLC" id="8SG-l9-Fxm"/>
                         <outlet property="pushScannerButton" destination="1IP-XH-yBM" id="Ca5-5K-CFs"/>
                     </connections>
                 </viewController>
@@ -117,7 +125,7 @@
         <!--Book-->
         <scene sceneID="a9H-ya-SOf">
             <objects>
-                <viewController id="3QW-dg-PMn" customClass="BookViewController" customModule="Bookbeep" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="bookViewController" id="3QW-dg-PMn" customClass="BookViewController" customModule="Bookbeep" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nq7-iO-YCD">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -247,6 +255,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="defaultCover" width="86.400001525878906" height="86.400001525878906"/>
+        <image name="defaultCover" width="180" height="180"/>
     </resources>
 </document>

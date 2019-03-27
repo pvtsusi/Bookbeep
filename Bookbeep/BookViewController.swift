@@ -12,7 +12,6 @@ import SwiftyJSON
 import Alamofire_SwiftyJSON
 
 class BookViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
     
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -25,6 +24,9 @@ class BookViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         authorLabel.text = book?.author
         titleLabel.text = book?.title
         recommendedSwitch.isOn = book?.recommended ?? false
+        if book?.mock ?? false {
+            takePhoto(self)
+        }
     }
     
     // MARK: Actions
@@ -48,14 +50,16 @@ class BookViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default))
                 self.present(alert, animated: true, completion: nil)
             } else {
-                if let targetViewController = self.navigationController?.viewControllers[1] {
+                let skippedBarcode = self.book?.mock ?? false
+                let origControllerIndex = skippedBarcode ? 0 : 1
+                if let targetViewController = self.navigationController?.viewControllers[origControllerIndex] {
                     self.navigationController?.popToViewController(targetViewController, animated: true)
                 }
             }
         }
     }
     
-    @IBAction func takePhoto(_ sender: UITapGestureRecognizer) {
+    @IBAction func takePhoto(_ sender: Any) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = .camera
         imagePickerController.delegate = self

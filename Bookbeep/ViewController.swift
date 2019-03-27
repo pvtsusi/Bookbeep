@@ -13,17 +13,24 @@ import SwiftyJSON
 import Alamofire_SwiftyJSON
 
 struct Bookdump {
-    static let API_ROOT = "http://10.1.1.192:5000";
+    static let API_ROOT = "http://10.1.1.196:5000/api";
 }
 
 class ViewController: UIViewController {
-    @IBOutlet var presentScannerButton: UIButton!
     @IBOutlet var pushScannerButton: UIButton!
+    @IBOutlet weak var photoButton: UIButton!
     
     @IBAction func handleScannerPush(_ sender: Any, forEvent event: UIEvent) {
         let viewController = makeBarcodeScannerViewController()
         viewController.title = "Barcode Scanner"
         navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @IBAction func handleTakePhoto(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let bookViewController = storyBoard.instantiateViewController(withIdentifier: "bookViewController") as! BookViewController
+        bookViewController.book = Book.mockBook()
+        navigationController?.pushViewController(bookViewController, animated: false)
     }
     
     private func makeBarcodeScannerViewController() -> BarcodeScannerViewController {
@@ -42,7 +49,7 @@ extension ViewController: BarcodeScannerCodeDelegate {
         print("Barcode Data: \(code)")
         print("Symbology Type: \(type)")
 
-        let url = "\(Bookdump.API_ROOT)/api/search/\(code)"
+        let url = "\(Bookdump.API_ROOT)/search/\(code)"
         Alamofire.request(url).responseSwiftyJSON { response in
             if (response.response?.statusCode != 200) {
                 controller.resetWithError();
