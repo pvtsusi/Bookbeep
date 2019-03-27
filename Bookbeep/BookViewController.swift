@@ -11,11 +11,12 @@ import Alamofire
 import SwiftyJSON
 import Alamofire_SwiftyJSON
 
-class BookViewController: UIViewController {
+class BookViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var coverImageView: UIImageView!
     @IBOutlet weak var recommendedSwitch: UISwitch!
     var book: Book?
     
@@ -25,6 +26,8 @@ class BookViewController: UIViewController {
         titleLabel.text = book?.title
         recommendedSwitch.isOn = book?.recommended ?? false
     }
+    
+    // MARK: Actions
     
     @IBAction func saveBook(_ sender: Any) {
         let url = "\(Bookdump.API_ROOT)/book"
@@ -50,6 +53,27 @@ class BookViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @IBAction func takePhoto(_ sender: UITapGestureRecognizer) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .camera
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    // MARK: UIImagePickerControllerDelegate
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+        }
+        coverImageView.image = selectedImage
+        dismiss(animated: true, completion: nil)
     }
     
     /*

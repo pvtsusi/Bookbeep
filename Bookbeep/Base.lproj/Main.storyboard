@@ -27,8 +27,8 @@
                                 <rect key="frame" x="70.5" y="234" width="179" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IP-XH-yBM">
-                                        <rect key="frame" x="9.5" y="0.0" width="160" height="100"/>
-                                        <state key="normal" title="Scan (Push Navigation)"/>
+                                        <rect key="frame" x="42" y="0.0" width="95" height="100"/>
+                                        <state key="normal" title="Scan barcode"/>
                                         <connections>
                                             <action selector="handleScannerPush:forEvent:" destination="l7u-ZM-WHJ" eventType="touchUpInside" id="gOC-4v-gYj"/>
                                         </connections>
@@ -72,21 +72,29 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="listAuthorLabel" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52b-nH-Dgp">
-                                            <rect key="frame" x="16" y="0.0" width="343" height="40"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="listAuthorLabel" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52b-nH-Dgp">
+                                            <rect key="frame" x="16" y="0.0" width="278" height="40"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rze-2J-Tub">
-                                            <rect key="frame" x="16" y="39" width="343" height="40"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rze-2J-Tub">
+                                            <rect key="frame" x="16" y="39" width="278" height="40"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="52b-nH-Dgp" secondAttribute="trailing" constant="10" id="9Qx-wG-19a"/>
+                                        <constraint firstItem="52b-nH-Dgp" firstAttribute="leading" secondItem="fiM-mx-GXo" secondAttribute="leadingMargin" id="Fbf-vP-8CB"/>
+                                        <constraint firstItem="52b-nH-Dgp" firstAttribute="leading" secondItem="Rze-2J-Tub" secondAttribute="leading" id="H45-zQ-c6m"/>
+                                        <constraint firstItem="52b-nH-Dgp" firstAttribute="top" secondItem="fiM-mx-GXo" secondAttribute="top" id="LQ4-lc-AQF"/>
+                                        <constraint firstItem="52b-nH-Dgp" firstAttribute="trailing" secondItem="Rze-2J-Tub" secondAttribute="trailing" id="NqM-rB-Spc"/>
+                                        <constraint firstItem="Rze-2J-Tub" firstAttribute="bottom" secondItem="fiM-mx-GXo" secondAttribute="bottomMargin" id="gHe-Af-oro"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="52b-nH-Dgp" secondAttribute="bottom" constant="39" id="n91-kk-1cs"/>
+                                        <constraint firstItem="Rze-2J-Tub" firstAttribute="top" secondItem="fiM-mx-GXo" secondAttribute="topMargin" constant="28" id="tdC-Tv-p8T"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="authorLabel" destination="52b-nH-Dgp" id="qp6-mB-BYd"/>
@@ -115,7 +123,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="isE-GV-5xv">
-                                <rect key="frame" x="16" y="114" width="288" height="49.5"/>
+                                <rect key="frame" x="16" y="84" width="288" height="49.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8n-lI-d2v">
                                         <rect key="frame" x="118.5" y="0.0" width="51.5" height="21"/>
@@ -153,14 +161,28 @@
                                     <constraint firstItem="x2p-BL-7kb" firstAttribute="leading" secondItem="21a-CF-o1o" secondAttribute="trailing" constant="8" id="Ra1-0w-6gQ"/>
                                 </constraints>
                             </stackView>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultCover" translatesAutoresizingMaskIntoConstraints="NO" id="gLg-yH-2ft">
+                                <rect key="frame" x="40" y="153.5" width="180" height="180"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gLg-yH-2ft" secondAttribute="height" multiplier="1:1" id="5du-ms-IAA"/>
+                                    <constraint firstAttribute="height" constant="180" id="TuM-3S-YaF"/>
+                                    <constraint firstAttribute="width" constant="180" id="Zfh-cg-97Z"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="u1y-hD-rko" appends="YES" id="wC4-2Z-eyI"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="isE-GV-5xv" firstAttribute="trailing" secondItem="nq7-iO-YCD" secondAttribute="trailingMargin" id="3im-DG-mCO"/>
+                            <constraint firstItem="gLg-yH-2ft" firstAttribute="leading" secondItem="ymr-39-jZn" secondAttribute="leading" constant="40" id="EHt-WC-RmQ"/>
                             <constraint firstItem="ymr-39-jZn" firstAttribute="trailing" secondItem="6v7-Vs-7JR" secondAttribute="trailing" constant="20" id="GLu-dN-nD4"/>
                             <constraint firstItem="isE-GV-5xv" firstAttribute="leading" secondItem="nq7-iO-YCD" secondAttribute="leadingMargin" id="WpE-9G-CSd"/>
-                            <constraint firstItem="isE-GV-5xv" firstAttribute="top" secondItem="ymr-39-jZn" secondAttribute="top" constant="50" id="X4d-SO-nHH"/>
+                            <constraint firstItem="isE-GV-5xv" firstAttribute="top" secondItem="ymr-39-jZn" secondAttribute="top" constant="20" id="X4d-SO-nHH"/>
                             <constraint firstAttribute="baseline" secondItem="6v7-Vs-7JR" secondAttribute="baseline" constant="20" id="b8q-ZL-nsR"/>
+                            <constraint firstItem="gLg-yH-2ft" firstAttribute="top" secondItem="isE-GV-5xv" secondAttribute="bottom" constant="20" id="hfJ-PH-OtD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ymr-39-jZn"/>
                     </view>
@@ -173,11 +195,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="authorLabel" destination="g8n-lI-d2v" id="iTI-zi-DcP"/>
+                        <outlet property="coverImageView" destination="gLg-yH-2ft" id="bgb-eo-a8P"/>
                         <outlet property="recommendedSwitch" destination="x2p-BL-7kb" id="9OY-c8-ceX"/>
                         <outlet property="titleLabel" destination="wCE-aM-FDb" id="qpq-Yv-Yx6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LN5-j9-6bl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="u1y-hD-rko">
+                    <connections>
+                        <action selector="takePhoto:" destination="3QW-dg-PMn" id="zFb-Ea-Ron"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3603.75" y="199.64788732394368"/>
         </scene>
@@ -218,4 +246,7 @@
             <point key="canvasLocation" x="1650" y="202.81690140845072"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="defaultCover" width="86.400001525878906" height="86.400001525878906"/>
+    </resources>
 </document>

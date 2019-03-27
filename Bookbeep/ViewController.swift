@@ -13,7 +13,7 @@ import SwiftyJSON
 import Alamofire_SwiftyJSON
 
 struct Bookdump {
-    static let API_ROOT = "http://10.1.1.196:5000";
+    static let API_ROOT = "http://10.1.1.192:5000";
 }
 
 class ViewController: UIViewController {
@@ -42,7 +42,7 @@ extension ViewController: BarcodeScannerCodeDelegate {
         print("Barcode Data: \(code)")
         print("Symbology Type: \(type)")
 
-        let url = "\(Bookdump.API_ROOT)/search/\(code)"
+        let url = "\(Bookdump.API_ROOT)/api/search/\(code)"
         Alamofire.request(url).responseSwiftyJSON { response in
             if (response.response?.statusCode != 200) {
                 controller.resetWithError();
