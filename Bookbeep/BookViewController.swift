@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Alamofire_SwiftyJSON
+import Toucan
 
 class BookViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -32,33 +33,64 @@ class BookViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     // MARK: Actions
     
     @IBAction func saveBook(_ sender: Any) {
-        let url = "\(Bookdump.API_ROOT)/book"
-        let params = book?.toParams(overrideRecommended: recommendedSwitch.isOn)
-        let enc = JSONEncoding.default
+        let url = "\(Bookdump.API_ROOT)/create"
+        let params = book!.toParams(overrideRecommended: recommendedSwitch.isOn)
+        var jsonData: Data
+        do {
+            jsonData = try JSON(params).rawData()
+        } catch let jsonError {
+            fatalError(jsonError.localizedDescription)
+        }
         let headers: HTTPHeaders = [
             "Accept": "application/json"
         ]
-        Alamofire.request(url, method: .post, parameters: params, encoding: enc, headers: headers).responseSwiftyJSON { response in
-            if (response.response?.statusCode != 201) {
-                var errorMsg = "Could not read Bookdump response"
-                if let json = response.value {
-                    if let error = json["error"].string {
-                        errorMsg = error;
-                    }
-                }
-                let alert = UIAlertController(title: "Book addition failed", message: errorMsg,     preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default))
-                self.present(alert, animated: true, completion: nil)
-            } else {
-                let skippedBarcode = self.book?.mock ?? false
-                let origControllerIndex = skippedBarcode ? 0 : 1
-                if let targetViewController = self.navigationController?.viewControllers[origControllerIndex] {
-                    self.navigationController?.popToViewController(targetViewController, animated: true)
-                }
+        let coverJpeg = self.coverToSmallJpeg()
+        
+        Alamofire.upload(multipartFormData: { multipartFormData in
+            if let imageData = coverJpeg {
+                multipartFormData.append(imageData, withName: "cover", fileName: "\(self.book!.isbn).jpg", mimeType: "image/jpeg")
             }
-        }
+            multipartFormData.append(jsonData, withName: "metadata", mimeType: "application/json")
+            }, to: url, method: .post, headers: headers, encodingCompletion: { encodingResult in
+                switch encodingResult {
+                case .success(let upload, _, _):
+                    upload.responseSwiftyJSON { [weak self] response in
+                        guard let strongSelf = self else {
+                            return
+                        }
+                        if (response.response?.statusCode != 201) {
+                            var errorMsg = "Could not read Bookdump response"
+                            if let json = response.value {
+                                if let error = json["error"].string {
+                                    errorMsg = error;
+                                }
+                            }
+                            let alert = UIAlertController(title: "Book addition failed", message: errorMsg,     preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default))
+                            strongSelf.present(alert, animated: true, completion: nil)
+                        } else {
+                            let skippedBarcode = strongSelf.book?.mock ?? false
+                            let origControllerIndex = skippedBarcode ? 0 : 1
+                            if let targetViewController = strongSelf.navigationController?.viewControllers[origControllerIndex] {
+                                strongSelf.navigationController?.popToViewController(targetViewController, animated: true)
+                            }
+                        }
+
+                    }
+                case .failure(let encodingError):
+                    fatalError("error:\(encodingError)")
+                }
+        })
     }
     
+    private func coverToSmallJpeg() -> Data? {
+        guard let image = coverImageView.image else {
+            return nil
+        }
+        let resizedImage = Toucan.Resize.resizeImage(image, size: CGSize(width: 540, height: 540), fitMode: .clip)
+        return resizedImage?.jpegData(compressionQuality: 0.75)
+    }
+        
     @IBAction func takePhoto(_ sender: Any) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = .camera
