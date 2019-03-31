@@ -33,23 +33,20 @@ class BookViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     // MARK: Actions
     
     @IBAction func saveBook(_ sender: Any) {
-        let url = "\(Bookdump.API_ROOT)/create"
-        let params = book!.toParams(overrideRecommended: recommendedSwitch.isOn)
-        var jsonData: Data
-        do {
-            jsonData = try JSON(params).rawData()
-        } catch let jsonError {
-            fatalError(jsonError.localizedDescription)
-        }
+        let url = "\(Bookdump.API_ROOT)/book"
+        var params = book!.toParams(overrideRecommended: recommendedSwitch.isOn)
         let headers: HTTPHeaders = [
             "Accept": "application/json"
         ]
-        let coverJpeg = self.coverToSmallJpeg()
+        let resizedCover = self.coverToSmallJpeg()
         
         Alamofire.upload(multipartFormData: { multipartFormData in
-            if let imageData = coverJpeg {
-                multipartFormData.append(imageData, withName: "cover", fileName: "\(self.book!.isbn).jpg", mimeType: "image/jpeg")
+            if let cover = resizedCover {
+                multipartFormData.append(cover.imageData, withName: "cover", fileName: "\(self.book!.isbn).jpg", mimeType: "image/jpeg")
+                params["width"] = cover.width
+                params["height"] = cover.height
             }
+            let jsonData = self.paramsToJson(params: params)
             multipartFormData.append(jsonData, withName: "metadata", mimeType: "application/json")
             }, to: url, method: .post, headers: headers, encodingCompletion: { encodingResult in
                 switch encodingResult {
@@ -83,12 +80,34 @@ class BookViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         })
     }
     
-    private func coverToSmallJpeg() -> Data? {
+    private func paramsToJson(params: Parameters) -> Data {
+        do {
+            return try JSON(params).rawData()
+        } catch let jsonError {
+            fatalError(jsonError.localizedDescription)
+        }
+    }
+    
+    struct ResizedCover {
+        var imageData: Data
+        var width: CGFloat
+        var height: CGFloat
+    }
+    
+    private func coverToSmallJpeg() -> ResizedCover? {
         guard let image = coverImageView.image else {
             return nil
         }
-        let resizedImage = Toucan.Resize.resizeImage(image, size: CGSize(width: 540, height: 540), fitMode: .clip)
-        return resizedImage?.jpegData(compressionQuality: 0.75)
+        guard let resizedImage = Toucan.Resize.resizeImage(image, size: CGSize(width: 540, height: 540), fitMode: .clip) else {
+            return nil
+        }
+        let width = resizedImage.size.width * resizedImage.scale;
+        let height = resizedImage.size.height * resizedImage.scale;
+        guard let imageData = resizedImage.jpegData(compressionQuality: 0.75) else {
+            return nil
+        }
+        
+        return ResizedCover(imageData: imageData, width: width, height: height)
     }
         
     @IBAction func takePhoto(_ sender: Any) {
