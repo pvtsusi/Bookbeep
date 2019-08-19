@@ -12,6 +12,7 @@
 		DC1DB9C02238376600300224 /* BookbeepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1DB9BF2238376600300224 /* BookbeepTests.swift */; };
 		DC1DB9C9223841E300300224 /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1DB9C8223841E300300224 /* BookTableViewCell.swift */; };
 		DC1DB9CB223847EE00300224 /* BookTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1DB9CA223847EE00300224 /* BookTableViewController.swift */; };
+		DC30B55E2305663F00F046B3 /* ConfigTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC30B55D2305663F00F046B3 /* ConfigTableViewCell.swift */; };
 		DC37004022382A890039BFF0 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37003F22382A890039BFF0 /* Book.swift */; };
 		DC8951452233EFA700E33D14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8951442233EFA700E33D14 /* AppDelegate.swift */; };
 		DC8951472233EFA700E33D14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8951462233EFA700E33D14 /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 		DC1DB9C12238376600300224 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC1DB9C8223841E300300224 /* BookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
 		DC1DB9CA223847EE00300224 /* BookTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableViewController.swift; sourceTree = "<group>"; };
+		DC30B55D2305663F00F046B3 /* ConfigTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTableViewCell.swift; sourceTree = "<group>"; };
 		DC37003F22382A890039BFF0 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		DC8951412233EFA700E33D14 /* Bookbeep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookbeep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC8951442233EFA700E33D14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				DC1DB9C8223841E300300224 /* BookTableViewCell.swift */,
 				DC1DB9CA223847EE00300224 /* BookTableViewController.swift */,
 				DC01BAD1223AC90A001FEA94 /* BookViewController.swift */,
+				DC30B55D2305663F00F046B3 /* ConfigTableViewCell.swift */,
 			);
 			path = Bookbeep;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				DC8951472233EFA700E33D14 /* ViewController.swift in Sources */,
 				DC01BAD2223AC90A001FEA94 /* BookViewController.swift in Sources */,
 				DC8951452233EFA700E33D14 /* AppDelegate.swift in Sources */,
+				DC30B55E2305663F00F046B3 /* ConfigTableViewCell.swift in Sources */,
 				DC37004022382A890039BFF0 /* Book.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
