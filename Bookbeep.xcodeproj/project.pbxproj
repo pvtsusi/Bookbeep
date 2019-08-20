@@ -19,6 +19,8 @@
 		DC89514A2233EFA700E33D14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC8951482233EFA700E33D14 /* Main.storyboard */; };
 		DC89514C2233EFA800E33D14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC89514B2233EFA800E33D14 /* Assets.xcassets */; };
 		DC89514F2233EFA800E33D14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC89514D2233EFA800E33D14 /* LaunchScreen.storyboard */; };
+		DCEAB494230BD4C200DABDD1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DCEAB493230BD4C200DABDD1 /* Settings.bundle */; };
+		DCEAB496230BF5CD00DABDD1 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAB495230BF5CD00DABDD1 /* SettingsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		DC89514B2233EFA800E33D14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC89514E2233EFA800E33D14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC8951502233EFA800E33D14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCEAB493230BD4C200DABDD1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		DCEAB495230BF5CD00DABDD1 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		F8BAC41A7AD48333FB67CF57 /* Pods-Bookbeep.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookbeep.debug.xcconfig"; path = "Target Support Files/Pods-Bookbeep/Pods-Bookbeep.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +97,7 @@
 		DC8951382233EFA700E33D14 = {
 			isa = PBXGroup;
 			children = (
+				DCEAB493230BD4C200DABDD1 /* Settings.bundle */,
 				DC8951432233EFA700E33D14 /* Bookbeep */,
 				DC1DB9BE2238376600300224 /* BookbeepTests */,
 				DC8951422233EFA700E33D14 /* Products */,
@@ -124,6 +129,7 @@
 				DC1DB9CA223847EE00300224 /* BookTableViewController.swift */,
 				DC01BAD1223AC90A001FEA94 /* BookViewController.swift */,
 				DC30B55D2305663F00F046B3 /* ConfigTableViewCell.swift */,
+				DCEAB495230BF5CD00DABDD1 /* SettingsTableViewController.swift */,
 			);
 			path = Bookbeep;
 			sourceTree = "<group>";
@@ -227,6 +233,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCEAB494230BD4C200DABDD1 /* Settings.bundle in Resources */,
 				DC89514F2233EFA800E33D14 /* LaunchScreen.storyboard in Resources */,
 				DC89514C2233EFA800E33D14 /* Assets.xcassets in Resources */,
 				DC89514A2233EFA700E33D14 /* Main.storyboard in Resources */,
@@ -248,6 +255,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire-SwiftyJSON/Alamofire_SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/BarcodeScanner/BarcodeScanner.framework",
+				"${BUILT_PRODUCTS_DIR}/InAppSettingsKit/InAppSettingsKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Toucan/Toucan.framework",
 			);
@@ -258,6 +266,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire_SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BarcodeScanner.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InAppSettingsKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toucan.framework",
 			);
@@ -307,6 +316,7 @@
 				DC1DB9C9223841E300300224 /* BookTableViewCell.swift in Sources */,
 				DC8951472233EFA700E33D14 /* ViewController.swift in Sources */,
 				DC01BAD2223AC90A001FEA94 /* BookViewController.swift in Sources */,
+				DCEAB496230BF5CD00DABDD1 /* SettingsTableViewController.swift in Sources */,
 				DC8951452233EFA700E33D14 /* AppDelegate.swift in Sources */,
 				DC30B55E2305663F00F046B3 /* ConfigTableViewCell.swift in Sources */,
 				DC37004022382A890039BFF0 /* Book.swift in Sources */,

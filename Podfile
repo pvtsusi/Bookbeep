@@ -10,5 +10,5 @@ target 'Bookbeep' do
   pod 'Alamofire'
   pod 'Alamofire-SwiftyJSON'
   pod 'Toucan'
-
+  pod 'InAppSettingsKit'
 end

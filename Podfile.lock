@@ -4,6 +4,7 @@ PODS:
     - Alamofire (~> 4.5)
     - SwiftyJSON (~> 4.0.0)
   - BarcodeScanner (4.1.3)
+  - InAppSettingsKit (2.12)
   - SwiftyJSON (4.0.0)
   - Toucan (1.1.0)
 
@@ -11,12 +12,14 @@ DEPENDENCIES:
   - Alamofire
   - Alamofire-SwiftyJSON
   - BarcodeScanner (from `https://github.com/rjstelling/BarcodeScanner.git`, commit `a1d7512710704cdb16623da66103b74e96439191`)
+  - InAppSettingsKit
   - Toucan
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Alamofire-SwiftyJSON
+    - InAppSettingsKit
     - SwiftyJSON
     - Toucan
 
@@ -34,9 +37,10 @@ SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   Alamofire-SwiftyJSON: 2b3649d57dc7bb2880fb8b86f8bb969397666916
   BarcodeScanner: fce1ad2b3f28286b1ab5091fe0979789618bee27
+  InAppSettingsKit: 363ed5ea061ebcb76d69ca1eed08c8a4fe48baf2
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   Toucan: 8f228fabb21521b9658692df9325fe76e71d74b2
 
-PODFILE CHECKSUM: 1307f48679d81b017fcfc9dd39ae6c842fe6b062
+PODFILE CHECKSUM: 2835aa11df642f823dfb115646b1041777454484
 
 COCOAPODS: 1.6.1

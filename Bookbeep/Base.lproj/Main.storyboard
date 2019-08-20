@@ -23,18 +23,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CKC-pj-aA1">
-                                <rect key="frame" x="70.5" y="234" width="179" height="100"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CKC-pj-aA1">
+                                <rect key="frame" x="70.5" y="418" width="179" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IP-XH-yBM">
-                                        <rect key="frame" x="42" y="0.0" width="95" height="30"/>
+                                        <rect key="frame" x="42" y="0.0" width="95" height="50"/>
                                         <state key="normal" title="Scan barcode"/>
                                         <connections>
                                             <action selector="handleScannerPush:forEvent:" destination="l7u-ZM-WHJ" eventType="touchUpInside" id="gOC-4v-gYj"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCM-ZR-vLC">
-                                        <rect key="frame" x="45.5" y="70" width="88" height="30"/>
+                                        <rect key="frame" x="45.5" y="50" width="88" height="50"/>
                                         <state key="normal" title="Take a photo"/>
                                         <connections>
                                             <action selector="handleTakePhoto:" destination="l7u-ZM-WHJ" eventType="touchUpInside" id="Oea-ah-1He"/>
@@ -49,7 +49,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="CKC-pj-aA1" firstAttribute="centerY" secondItem="4hZ-wG-weU" secondAttribute="centerY" id="4UO-xV-U4B"/>
+                            <constraint firstItem="kNU-Nn-l1D" firstAttribute="top" secondItem="CKC-pj-aA1" secondAttribute="bottom" constant="50" id="2rN-8t-Kb6"/>
                             <constraint firstItem="CKC-pj-aA1" firstAttribute="centerX" secondItem="4hZ-wG-weU" secondAttribute="centerX" id="iUk-SK-Bto"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8NL-rw-eS2"/>
@@ -58,11 +58,44 @@
                     <connections>
                         <outlet property="photoButton" destination="jCM-ZR-vLC" id="8SG-l9-Fxm"/>
                         <outlet property="pushScannerButton" destination="1IP-XH-yBM" id="Ca5-5K-CFs"/>
+                        <segue destination="XGh-b4-Bou" kind="show" identifier="ShowSettings" id="Lth-11-GWD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i28-p6-kI8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="696.79999999999995" y="202.84857571214394"/>
+        </scene>
+        <!--Settings Table View Controller-->
+        <scene sceneID="5ha-Yo-LdK">
+            <objects>
+                <tableViewController id="XGh-b4-Bou" customClass="SettingsTableViewController" customModule="Bookbeep" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="My2-Ls-a07">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="iaI-Dr-zzv">
+                                <rect key="frame" x="0.0" y="55.5" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iaI-Dr-zzv" id="dFg-wd-ZRi">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="XGh-b4-Bou" id="lcY-rk-5EC"/>
+                            <outlet property="delegate" destination="XGh-b4-Bou" id="HEC-9k-l8W"/>
+                        </connections>
+                    </tableView>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="showDoneButton" value="NO"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="neverShowPrivacySettings" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xmi-21-Yse" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="696" y="1051"/>
         </scene>
         <!--Candidates-->
         <scene sceneID="ZeK-xq-iUu">

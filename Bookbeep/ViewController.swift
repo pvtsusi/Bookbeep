@@ -12,10 +12,6 @@ import Alamofire
 import SwiftyJSON
 import Alamofire_SwiftyJSON
 
-struct Bookdump {
-    static let API_ROOT = "http://10.1.1.196:5000/api";
-}
-
 class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource {
     @IBOutlet var pushScannerButton: UIButton!
     @IBOutlet weak var photoButton: UIButton!
@@ -33,12 +29,12 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
         tableview.delegate = self
         tableview.dataSource = self
         tableview.register(ConfigTableViewCell.self, forCellReuseIdentifier: "cellId")
-        
+
         view.addSubview(tableview)
         
         NSLayoutConstraint.activate([
-            tableview.heightAnchor.constraint(equalToConstant: 100),
-            tableview.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100),
+            tableview.heightAnchor.constraint(equalToConstant: 110),
+            tableview.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 60),
             tableview.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             tableview.leftAnchor.constraint(equalTo: self.view.leftAnchor)
         ])
@@ -49,11 +45,11 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
+        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 30))
+        headerView.autoresizingMask = .flexibleWidth
         let label = UILabel()
-        label.frame = CGRect.init(x: 10, y: 25, width: headerView.frame.width-10, height: headerView.frame.height - 20)
+        label.frame = CGRect.init(x: 10, y: 10, width: headerView.frame.width-10, height: headerView.frame.height - 20)
         label.text = "BOOKDUMP SERVER"
-        label.textColor = .black
         label.font = label.font.withSize(12)
         label.textColor = .darkGray
         headerView.addSubview(label)
@@ -61,15 +57,15 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
         let px = 1 / UIScreen.main.scale
         let line = UIView(frame: CGRect(x: 0, y: headerView.frame.height, width: tableView.frame.width, height: px))
         line.backgroundColor = tableView.separatorColor
+        line.autoresizingMask = .flexibleWidth
         headerView.addSubview(line)
-        NSLayoutConstraint.activate([line.widthAnchor.constraint(equalTo: headerView.widthAnchor),
-            headerView.widthAnchor.constraint(equalTo: tableView.widthAnchor)])
+        NSLayoutConstraint.activate([line.widthAnchor.constraint(equalTo: headerView.widthAnchor)])
 
         return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 30
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,6 +82,10 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ShowSettings", sender: tableView.cellForRow(at: indexPath))
     }
     
     @IBAction func handleScannerPush(_ sender: Any, forEvent event: UIEvent) {
@@ -117,7 +117,10 @@ extension ViewController: BarcodeScannerCodeDelegate {
         print("Barcode Data: \(code)")
         print("Symbology Type: \(type)")
 
-        let url = "\(Bookdump.API_ROOT)/search/\(code)"
+        guard let apiUrl = UserDefaults.standard.string(forKey: "bookdump_url") else {
+            fatalError("Bookdump URL not set")
+        }
+        let url = "\(apiUrl)/search/\(code)"
         Alamofire.request(url).responseSwiftyJSON { response in
             if (response.response?.statusCode != 200) {
                 controller.resetWithError();

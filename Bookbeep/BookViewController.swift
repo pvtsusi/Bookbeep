@@ -33,7 +33,10 @@ class BookViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     // MARK: Actions
     
     @IBAction func saveBook(_ sender: Any) {
-        let url = "\(Bookdump.API_ROOT)/book"
+        guard let apiUrl = UserDefaults.standard.string(forKey: "bookdump_url") else {
+            fatalError("Bookdump URL not set")
+        }
+        let url = "\(apiUrl)/book"
         var params = book!.toParams(overrideRecommended: recommendedSwitch.isOn)
         let headers: HTTPHeaders = [
             "Accept": "application/json"
