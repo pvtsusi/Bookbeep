@@ -11,6 +11,7 @@ import BarcodeScanner
 import Alamofire
 import SwiftyJSON
 import Alamofire_SwiftyJSON
+import InAppSettingsKit
 
 class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource {
     @IBOutlet var pushScannerButton: UIButton!
@@ -38,8 +39,29 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
             tableview.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             tableview.leftAnchor.constraint(equalTo: self.view.leftAnchor)
         ])
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateConfiguredState), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateConfiguredState), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateConfiguredState), name: UserDefaults.didChangeNotification, object:nil)
     }
-
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // my selector that was defined above
+    @objc func updateConfiguredState() {
+        if let cell = tableview.cellForRow(at: IndexPath(row: 0, section: 0)) {
+            let configCell = cell as! ConfigTableViewCell
+            UserDefaults.standard.synchronize()
+            if (Bookdump.configured()) {
+                configCell.setLabel(Bookdump.apiBaseUrl())
+            } else {
+                configCell.setLabel("Configure")
+            }
+        }
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -77,6 +99,7 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
         cell.backgroundColor = UIColor.white
         cell.separatorInset.left = 0
         cell.accessoryType = .disclosureIndicator
+        NotificationCenter.default.addObserver(cell, selector: #selector(cell.settingsChanged), name: NSNotification.Name(rawValue: kIASKAppSettingChanged), object: nil)
         return cell
     }
     
@@ -114,13 +137,7 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
 extension ViewController: BarcodeScannerCodeDelegate {
     func scanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
 
-        print("Barcode Data: \(code)")
-        print("Symbology Type: \(type)")
-
-        guard let apiUrl = UserDefaults.standard.string(forKey: "bookdump_url") else {
-            fatalError("Bookdump URL not set")
-        }
-        let url = "\(apiUrl)/search/\(code)"
+        let url = "\(Bookdump.apiBaseUrl())/search/\(code)"
         Alamofire.request(url).responseSwiftyJSON { response in
             if (response.response?.statusCode != 200) {
                 controller.resetWithError();

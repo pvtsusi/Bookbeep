@@ -16,9 +16,13 @@ class ConfigTableViewCell: UITableViewCell {
         return view
     }()
     
-    let dayLabel: UILabel = {
+    let configLabel: UILabel = {
         let label = UILabel()
-        label.text = "Configure"
+        if Bookdump.configured() {
+            label.text = Bookdump.apiBaseUrl()
+        } else {
+            label.text = "Configure"
+        }
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -28,7 +32,7 @@ class ConfigTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         addSubview(cellView)
-        cellView.addSubview(dayLabel)
+        cellView.addSubview(configLabel)
         self.selectionStyle = .none
         
         NSLayoutConstraint.activate([
@@ -38,16 +42,32 @@ class ConfigTableViewCell: UITableViewCell {
             cellView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         
-        dayLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        dayLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        dayLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
-        dayLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
+        configLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        configLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        configLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
+        configLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
+    @objc func settingsChanged(notification: NSNotification) {
+        let newUrl = notification.userInfo?["bookdump_url"] as? String
+        setLabel(newUrl)
+    }
     
+    func setLabel(_ newValue: String?) {
+        if let value = newValue {
+            if (!value.isEmpty) {
+                configLabel.text = value
+                return
+            }
+        }
+        configLabel.text = "Configure"
+    }
 }

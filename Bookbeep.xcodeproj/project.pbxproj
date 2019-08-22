@@ -21,6 +21,7 @@
 		DC89514F2233EFA800E33D14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC89514D2233EFA800E33D14 /* LaunchScreen.storyboard */; };
 		DCEAB494230BD4C200DABDD1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DCEAB493230BD4C200DABDD1 /* Settings.bundle */; };
 		DCEAB496230BF5CD00DABDD1 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAB495230BF5CD00DABDD1 /* SettingsTableViewController.swift */; };
+		DCEAB498230D44F900DABDD1 /* Bookdump.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEAB497230D44F900DABDD1 /* Bookdump.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		DC8951502233EFA800E33D14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCEAB493230BD4C200DABDD1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		DCEAB495230BF5CD00DABDD1 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		DCEAB497230D44F900DABDD1 /* Bookdump.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookdump.swift; sourceTree = "<group>"; };
 		F8BAC41A7AD48333FB67CF57 /* Pods-Bookbeep.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bookbeep.debug.xcconfig"; path = "Target Support Files/Pods-Bookbeep/Pods-Bookbeep.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +132,7 @@
 				DC01BAD1223AC90A001FEA94 /* BookViewController.swift */,
 				DC30B55D2305663F00F046B3 /* ConfigTableViewCell.swift */,
 				DCEAB495230BF5CD00DABDD1 /* SettingsTableViewController.swift */,
+				DCEAB497230D44F900DABDD1 /* Bookdump.swift */,
 			);
 			path = Bookbeep;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				DC01BAD2223AC90A001FEA94 /* BookViewController.swift in Sources */,
 				DCEAB496230BF5CD00DABDD1 /* SettingsTableViewController.swift in Sources */,
 				DC8951452233EFA700E33D14 /* AppDelegate.swift in Sources */,
+				DCEAB498230D44F900DABDD1 /* Bookdump.swift in Sources */,
 				DC30B55E2305663F00F046B3 /* ConfigTableViewCell.swift in Sources */,
 				DC37004022382A890039BFF0 /* Book.swift in Sources */,
 			);
