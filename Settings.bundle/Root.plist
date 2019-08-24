@@ -68,12 +68,20 @@
 		</dict>
                 <dict>
                         <key>Type</key>
-                        <string>IASKButtonSpecifier</string>
+                        <string>PSGroupSpecifier</string>
                         <key>Title</key>
-                        <string>Test connection</string>
+                        <string>Hmm</string>
                         <key>Key</key>
-                        <string>bookdump_button</string>
+                        <string>IASKCustomHeaderStyle</string>
                 </dict>
+		<dict>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
+			<key>Title</key>
+			<string>Test connection</string>
+			<key>Key</key>
+			<string>bookdump_button</string>
+		</dict>
 	</array>
 </dict>
 </plist>

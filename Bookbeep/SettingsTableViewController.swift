@@ -23,20 +23,50 @@ class SettingsTableViewController : IASKAppSettingsViewController, IASKSettingsD
             return
         }
         
+        postStatus(loading: true)
+        
         let url = "\(Bookdump.apiBaseUrl())/test"
         
         Alamofire.request(url)
             .authenticate(user: Bookdump.apiUser(), password: Bookdump.apiPass())
             .responseJSON { response in
             if (response.response == nil) {
-                print("No response")
+                self.postStatus(loading: false, message: "No response from server")
             } else if (response.error != nil) {
-                print("Response error: \(response.error)")
+                if (response.response!.statusCode == 401) {
+                    self.postStatus(loading: false, message: "Bad username or password")
+                } else {
+                    self.postStatus(loading: false, message: "Connection failed")
+                }
             } else if (response.response!.statusCode != 200) {
-                print("Response status: \(response.response!.statusCode)")
+                self.postStatus(loading: false, message: "Server responded with an error")
             } else {
-                print("OK!")
+                self.postStatus(loading: false, message: "Connection OK!")
             }
         }
+    }
+
+    private func postStatus(loading: Bool, message: String? = nil) {
+        var userInfo: [AnyHashable: Any] = ["Loading": loading]
+        if (message != nil) {
+            userInfo["Message"] = message
+        }
+        NotificationCenter.default.post(name: Notification.Name("TestConnectionStatus"), object: nil, userInfo: userInfo)
+    }
+
+    func settingsViewController(_ settingsViewController: IASKViewController!, tableView: UITableView!, heightForHeaderForSection section: Int) -> CGFloat {
+        if (settingsViewController.settingsReader.key(forSection: section) == "IASKCustomHeaderStyle") {
+            return 30.0
+        }
+        return 0
+    }
+    
+    func settingsViewController(_ settingsViewController: IASKViewController!, tableView: UITableView!, viewForHeaderForSection section: Int) -> UIView! {
+        if (settingsViewController.settingsReader.key(forSection: section) == "IASKCustomHeaderStyle") {
+            let view = ConnectionStatusView.init(width: tableView.frame.width)
+            NotificationCenter.default.addObserver(view, selector: #selector(view.setConnectionState(notification:)), name: Notification.Name("TestConnectionStatus"), object: nil)
+            return view
+        }
+        return nil
     }
 }

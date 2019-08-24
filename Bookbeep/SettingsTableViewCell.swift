@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConfigTableViewCell: UITableViewCell {
+class SettingsTableViewCell: UITableViewCell {
     
     let cellView: UIView = {
         let view = UIView()

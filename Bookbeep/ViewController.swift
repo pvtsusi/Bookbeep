@@ -29,7 +29,7 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
         
         tableview.delegate = self
         tableview.dataSource = self
-        tableview.register(ConfigTableViewCell.self, forCellReuseIdentifier: "cellId")
+        tableview.register(SettingsTableViewCell.self, forCellReuseIdentifier: "cellId")
 
         view.addSubview(tableview)
         
@@ -38,8 +38,10 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
             tableview.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 60),
             tableview.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             tableview.leftAnchor.constraint(equalTo: self.view.leftAnchor)
-        ])
-        
+        ])        
+    }
+    
+    override func awakeFromNib() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateConfiguredState), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateConfiguredState), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateConfiguredState), name: UserDefaults.didChangeNotification, object:nil)
@@ -52,7 +54,7 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
     // my selector that was defined above
     @objc func updateConfiguredState() {
         if let cell = tableview.cellForRow(at: IndexPath(row: 0, section: 0)) {
-            let configCell = cell as! ConfigTableViewCell
+            let configCell = cell as! SettingsTableViewCell
             UserDefaults.standard.synchronize()
             if (Bookdump.configured()) {
                 configCell.setLabel(Bookdump.apiBaseUrl())
@@ -95,7 +97,7 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableview.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! ConfigTableViewCell
+        let cell = tableview.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! SettingsTableViewCell
         cell.backgroundColor = UIColor.white
         cell.separatorInset.left = 0
         cell.accessoryType = .disclosureIndicator

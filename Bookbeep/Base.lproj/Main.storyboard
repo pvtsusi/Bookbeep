@@ -91,6 +91,7 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="showDoneButton" value="NO"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="neverShowPrivacySettings" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="showCreditsFooter" value="NO"/>
                     </userDefinedRuntimeAttributes>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xmi-21-Yse" userLabel="First Responder" sceneMemberID="firstResponder"/>
