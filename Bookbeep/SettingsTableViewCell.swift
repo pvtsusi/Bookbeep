@@ -19,7 +19,7 @@ class SettingsTableViewCell: UITableViewCell {
     let configLabel: UILabel = {
         let label = UILabel()
         if Bookdump.configured() {
-            label.text = Bookdump.apiBaseUrl()
+            label.text = "Connected"
         } else {
             label.text = "Configure"
         }

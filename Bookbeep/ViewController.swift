@@ -57,7 +57,7 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
             let configCell = cell as! SettingsTableViewCell
             UserDefaults.standard.synchronize()
             if (Bookdump.configured()) {
-                configCell.setLabel(Bookdump.apiBaseUrl())
+                configCell.setLabel("Connected")
             } else {
                 configCell.setLabel("Configure")
             }
