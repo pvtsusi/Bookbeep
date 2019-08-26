@@ -14,30 +14,48 @@ class Bookdump {
             return false
         }
         let parsedUrl = URLComponents(string: url)
-        return parsedUrl != nil && parsedUrl?.string != nil
+        if (parsedUrl == nil || parsedUrl!.string == nil) {
+            return false
+        }
+        if (UserDefaults.standard.string(forKey: "bookdump_user") == nil) {
+            return false
+        }
+        if (UserDefaults.standard.string(forKey: "bookdump_user") == nil) {
+            return false
+        }
+        return true
     }
     
-    static func apiBaseUrl() -> String {
+    static func normalizeApiBaseUrl() -> String {
         guard let url = UserDefaults.standard.string(forKey: "bookdump_url") else {
             fatalError("Bookdump URL not set")
         }
         guard var urlComponents = URLComponents(string: url) else {
             fatalError("Invalid URL")
         }
-        var modified = false
         if (urlComponents.scheme != "https") {
             urlComponents.scheme = "https"
-            modified = true
+        }
+        if (urlComponents.path.hasSuffix("/")) {
+            urlComponents.path = String(urlComponents.path.dropLast())
         }
         if (!urlComponents.path.hasSuffix("/api")) {
             urlComponents.path = "\(urlComponents.path)/api"
-            modified = true
         }
-        let validUrl = urlComponents.string!
-        if (modified) {
-            UserDefaults.standard.set(validUrl, forKey: "bookdump_url")
+        if (urlComponents.host == nil && urlComponents.path.contains("/")) {
+            let hostAndPath = urlComponents.path.split(separator: "/", maxSplits: 1, omittingEmptySubsequences: true)
+            urlComponents.host = String(hostAndPath[0])
+            urlComponents.path = "/\(hostAndPath[1])"
         }
-        return validUrl
+        print(urlComponents.string!)
+        return urlComponents.string!
+    }
+    
+    static func apiBaseUrl() -> String {
+        guard let url = UserDefaults.standard.string(forKey: "bookdump_url") else {
+            return ""
+        }
+        return url
     }
     
     static func apiUser() -> String {

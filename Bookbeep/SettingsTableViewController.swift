@@ -25,7 +25,7 @@ class SettingsTableViewController : IASKAppSettingsViewController, IASKSettingsD
         
         postStatus(loading: true)
         
-        let url = "\(Bookdump.apiBaseUrl())/test"
+        let url = "\(Bookdump.normalizeApiBaseUrl())/test"
         
         Alamofire.request(url)
             .authenticate(user: Bookdump.apiUser(), password: Bookdump.apiPass())

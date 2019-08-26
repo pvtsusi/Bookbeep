@@ -55,11 +55,10 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
     @objc func updateConfiguredState() {
         if let cell = tableview.cellForRow(at: IndexPath(row: 0, section: 0)) {
             let configCell = cell as! SettingsTableViewCell
-            UserDefaults.standard.synchronize()
             if (Bookdump.configured()) {
-                configCell.setLabel("Connected")
+                configCell.setLabel(Bookdump.apiBaseUrl())
             } else {
-                configCell.setLabel("Configure")
+                configCell.setLabel(nil)
             }
         }
     }
@@ -139,7 +138,7 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
 extension ViewController: BarcodeScannerCodeDelegate {
     func scanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
 
-        let url = "\(Bookdump.apiBaseUrl())/search/\(code)"
+        let url = "\(Bookdump.normalizeApiBaseUrl())/search/\(code)"
         Alamofire.request(url).responseSwiftyJSON { response in
             if (response.response?.statusCode != 200) {
                 controller.resetWithError();

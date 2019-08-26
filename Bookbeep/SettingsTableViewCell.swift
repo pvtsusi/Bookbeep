@@ -18,15 +18,14 @@ class SettingsTableViewCell: UITableViewCell {
     
     let configLabel: UILabel = {
         let label = UILabel()
-        if Bookdump.configured() {
-            label.text = "Connected"
-        } else {
-            label.text = "Configure"
-        }
         label.textColor = UIColor.black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    let check = UIImage(named: "check.pdf")
+    let alert = UIImage(named: "alert.pdf")
+    let glyphView = UIImageView(frame: CGRect.zero)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -46,6 +45,17 @@ class SettingsTableViewCell: UITableViewCell {
         configLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         configLabel.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
         configLabel.leftAnchor.constraint(equalTo: cellView.leftAnchor, constant: 20).isActive = true
+        
+        glyphView.translatesAutoresizingMaskIntoConstraints = false
+        cellView.addSubview(glyphView)
+        glyphView.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
+        glyphView.rightAnchor.constraint(equalTo: cellView.rightAnchor, constant: -30).isActive = true
+        
+        if Bookdump.configured() {
+            setLabel(Bookdump.apiBaseUrl())
+        } else {
+            setLabel(nil)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -60,6 +70,15 @@ class SettingsTableViewCell: UITableViewCell {
         let newUrl = notification.userInfo?["bookdump_url"] as? String
         setLabel(newUrl)
     }
+
+    func setConfigured(_ configured: Bool) {
+        if (configured) {
+            glyphView.image = check;
+        } else {
+            configLabel.text = "Set up the connection"
+            glyphView.image = alert;
+        }
+    }
     
     func setLabel(_ newValue: String?) {
         if let value = newValue {
@@ -68,6 +87,5 @@ class SettingsTableViewCell: UITableViewCell {
                 return
             }
         }
-        configLabel.text = "Configure"
     }
 }
