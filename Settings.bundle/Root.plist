@@ -66,14 +66,12 @@
 			<key>AutocorrectionType</key>
 			<string>No</string>
 		</dict>
-                <dict>
-                        <key>Type</key>
-                        <string>PSGroupSpecifier</string>
-                        <key>Title</key>
-                        <string>Hmm</string>
-                        <key>Key</key>
-                        <string>IASKCustomHeaderStyle</string>
-                </dict>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Key</key>
+			<string>IASKCustomHeaderStyle</string>
+		</dict>
 		<dict>
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>

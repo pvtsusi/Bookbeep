@@ -51,11 +51,7 @@ class SettingsTableViewCell: UITableViewCell {
         glyphView.centerYAnchor.constraint(equalTo: cellView.centerYAnchor).isActive = true
         glyphView.rightAnchor.constraint(equalTo: cellView.rightAnchor, constant: -30).isActive = true
         
-        if Bookdump.configured() {
-            setLabel(Bookdump.apiBaseUrl())
-        } else {
-            setLabel(nil)
-        }
+        settingsChanged()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -67,10 +63,29 @@ class SettingsTableViewCell: UITableViewCell {
     }
     
     @objc func settingsChanged(notification: NSNotification) {
-        let newUrl = notification.userInfo?["bookdump_url"] as? String
-        setLabel(newUrl)
+        if (notification.userInfo?["bookdump_url"] != nil) {
+            let newUrl = notification.userInfo!["bookdump_url"] as! String
+            setLabel(newUrl)
+            setConfigured(Bookdump.configured(url: newUrl))
+        }
+        if (notification.userInfo?["bookdump_user"] != nil) {
+            setConfigured(Bookdump.configured(user: notification.userInfo!["bookdump_user"] as? String))
+        }
+        if (notification.userInfo?["bookdump_pass"] != nil) {
+            setConfigured(Bookdump.configured(pass: notification.userInfo!["bookdump_pass"] as? String))
+        }
     }
 
+    func settingsChanged() {
+        if Bookdump.configured() {
+            setLabel(Bookdump.apiBaseUrl())
+            setConfigured(true)
+        } else {
+            setLabel(nil)
+            setConfigured(false)
+        }
+    }
+    
     func setConfigured(_ configured: Bool) {
         if (configured) {
             glyphView.image = check;

@@ -9,18 +9,20 @@
 import Foundation
 
 class Bookdump {
-    static func configured() -> Bool {
-        guard let url = UserDefaults.standard.string(forKey: "bookdump_url") else {
+    static func configured(url: String? = nil, user: String? = nil, pass: String? = nil) -> Bool {
+        guard let urlVal = url != nil ? url : UserDefaults.standard.string(forKey: "bookdump_url") else {
             return false
         }
-        let parsedUrl = URLComponents(string: url)
+        let parsedUrl = URLComponents(string: urlVal)
         if (parsedUrl == nil || parsedUrl!.string == nil) {
             return false
         }
-        if (UserDefaults.standard.string(forKey: "bookdump_user") == nil) {
+        let userVal = user != nil ? user : UserDefaults.standard.string(forKey: "bookdump_user");
+        if (userVal == nil || userVal!.isEmpty) {
             return false
         }
-        if (UserDefaults.standard.string(forKey: "bookdump_user") == nil) {
+        let passVal = pass != nil ? pass : UserDefaults.standard.string(forKey: "bookdump_pass");
+        if (passVal == nil || passVal!.isEmpty) {
             return false
         }
         return true

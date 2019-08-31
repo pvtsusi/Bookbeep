@@ -55,11 +55,7 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
     @objc func updateConfiguredState() {
         if let cell = tableview.cellForRow(at: IndexPath(row: 0, section: 0)) {
             let configCell = cell as! SettingsTableViewCell
-            if (Bookdump.configured()) {
-                configCell.setLabel(Bookdump.apiBaseUrl())
-            } else {
-                configCell.setLabel(nil)
-            }
+            configCell.settingsChanged()
         }
     }
     
@@ -100,7 +96,7 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
         cell.backgroundColor = UIColor.white
         cell.separatorInset.left = 0
         cell.accessoryType = .disclosureIndicator
-        NotificationCenter.default.addObserver(cell, selector: #selector(cell.settingsChanged), name: NSNotification.Name(rawValue: kIASKAppSettingChanged), object: nil)
+        NotificationCenter.default.addObserver(cell, selector: #selector(cell.settingsChanged(notification:)), name: NSNotification.Name(rawValue: kIASKAppSettingChanged), object: nil)
         return cell
     }
     
