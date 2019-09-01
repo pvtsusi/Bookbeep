@@ -18,9 +18,7 @@
 			<key>Title</key>
 			<string>URL</string>
 			<key>Key</key>
-			<string>bookdump_url</string>
-			<key>DefaultValue</key>
-			<string>https://bookdu.mp/api</string>
+			<string>BookdumpUrl</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>KeyboardType</key>
@@ -36,7 +34,7 @@
 			<key>Title</key>
 			<string>Username</string>
 			<key>Key</key>
-			<string>bookdump_user</string>
+			<string>BookdumpUser</string>
 			<key>DefaultValue</key>
 			<string></string>
 			<key>IsSecure</key>
@@ -54,7 +52,7 @@
 			<key>Title</key>
 			<string>Password</string>
 			<key>Key</key>
-			<string>bookdump_pass</string>
+			<string>BookdumpPass</string>
 			<key>DefaultValue</key>
 			<string></string>
 			<key>IsSecure</key>
@@ -78,7 +76,7 @@
 			<key>Title</key>
 			<string>Test connection</string>
 			<key>Key</key>
-			<string>bookdump_button</string>
+			<string>BookdumpButton</string>
 		</dict>
 	</array>
 </dict>

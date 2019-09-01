@@ -10,50 +10,21 @@ import InAppSettingsKit
 import Alamofire
 
 class SettingsTableViewController : IASKAppSettingsViewController, IASKSettingsDelegate {
+    
     func settingsViewControllerDidEnd(_ sender: IASKAppSettingsViewController!) {
     }
     
     override func viewDidLoad() {
         self.delegate = self
-    }
-    
-    func settingsViewController(_ sender: IASKAppSettingsViewController!, buttonTappedFor specifier: IASKSpecifier!) {
+    }    
 
-        if (specifier.key() != "bookdump_button") {
+    func settingsViewController(_ sender: IASKAppSettingsViewController!, buttonTappedFor specifier: IASKSpecifier!) {
+        if (specifier.key() != "BookdumpButton") {
             return
         }
-        
-        postStatus(loading: true)
-        
-        let url = "\(Bookdump.normalizeApiBaseUrl())/test"
-        
-        Alamofire.request(url)
-            .authenticate(user: Bookdump.apiUser(), password: Bookdump.apiPass())
-            .responseJSON { response in
-            if (response.response == nil) {
-                self.postStatus(loading: false, message: "No response from server")
-            } else if (response.error != nil) {
-                if (response.response!.statusCode == 401) {
-                    self.postStatus(loading: false, message: "Bad username or password")
-                } else {
-                    self.postStatus(loading: false, message: "Connection failed")
-                }
-            } else if (response.response!.statusCode != 200) {
-                self.postStatus(loading: false, message: "Server responded with an error")
-            } else {
-                self.postStatus(loading: false, message: "Connection OK!")
-            }
-        }
+        Bookdump.shared.testConnection()
     }
-
-    private func postStatus(loading: Bool, message: String? = nil) {
-        var userInfo: [AnyHashable: Any] = ["Loading": loading]
-        if (message != nil) {
-            userInfo["Message"] = message
-        }
-        NotificationCenter.default.post(name: Notification.Name("TestConnectionStatus"), object: nil, userInfo: userInfo)
-    }
-
+    
     func settingsViewController(_ settingsViewController: IASKViewController!, tableView: UITableView!, heightForHeaderForSection section: Int) -> CGFloat {
         if (settingsViewController.settingsReader.key(forSection: section) == "IASKCustomHeaderStyle") {
             return 30.0
