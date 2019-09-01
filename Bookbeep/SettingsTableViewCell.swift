@@ -64,15 +64,21 @@ class SettingsTableViewCell: UITableViewCell {
     
     @objc func settingsChanged(notification: NSNotification) {
         if (notification.userInfo?["BookdumpUrl"] != nil) {
+            Bookdump.shared.clearStatus()
             let newUrl = notification.userInfo!["BookdumpUrl"] as! String
             setLabel(newUrl)
             setConfigured(Bookdump.configured(url: newUrl))
         }
-        if (notification.userInfo?["BookdumpUrl"] != nil) {
+        if (notification.userInfo?["BookdumpUser"] != nil) {
+            Bookdump.shared.clearStatus()
             setConfigured(Bookdump.configured(user: notification.userInfo!["BookdumpUser"] as? String))
         }
         if (notification.userInfo?["BookdumpPass"] != nil) {
+            Bookdump.shared.clearStatus()
             setConfigured(Bookdump.configured(pass: notification.userInfo!["BookdumpPass"] as? String))
+        }
+        if (notification.userInfo?["TestSuccess"] != nil) {
+            setConfigured(Bookdump.configured(testSuccess: notification.userInfo!["TestSuccess"] as? Bool))
         }
     }
 

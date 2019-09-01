@@ -97,6 +97,7 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
         cell.separatorInset.left = 0
         cell.accessoryType = .disclosureIndicator
         NotificationCenter.default.addObserver(cell, selector: #selector(cell.settingsChanged(notification:)), name: NSNotification.Name(rawValue: kIASKAppSettingChanged), object: nil)
+        NotificationCenter.default.addObserver(cell, selector: #selector(cell.settingsChanged(notification:)), name: Notification.Name("TestConnectionStatus"), object: nil)
         return cell
     }
     

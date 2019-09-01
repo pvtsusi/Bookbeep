@@ -22,7 +22,14 @@ class Bookdump {
     
     private init() { }
     
-    static func configured(url: String? = nil, user: String? = nil, pass: String? = nil) -> Bool {
+    static func configured(testSuccess: Bool? = nil, url: String? = nil, user: String? = nil, pass: String? = nil) -> Bool {
+        if (testSuccess != nil) {
+            if (!(testSuccess!)) {
+                return false
+            }
+        } else if (UserDefaults.standard.string(forKey: "BookdumpStatus") != nil) {
+            return false
+        }
         guard let urlVal = url != nil ? url : UserDefaults.standard.string(forKey: "BookdumpUrl") else {
             return false
         }
@@ -96,25 +103,48 @@ class Bookdump {
             .authenticate(user: Bookdump.apiUser(), password: Bookdump.apiPass())
             .responseJSON { response in
                 if (response.response == nil) {
-                    self.postStatus(loading: false, message: "No response from server")
+                    self.handleStatus(loading: false, message: "No response from server")
                 } else if (response.error != nil) {
                     if (response.response!.statusCode == 401) {
-                        self.postStatus(loading: false, message: "Bad username or password")
+                        self.handleStatus(loading: false, message: "Bad username or password")
                     } else {
-                        self.postStatus(loading: false, message: "Connection failed")
+                        self.handleStatus(loading: false, message: "Connection failed")
                     }
                 } else if (response.response!.statusCode != 200) {
-                    self.postStatus(loading: false, message: "Server responded with an error")
+                    self.handleStatus(loading: false, message: "Server responded with an error")
                 } else {
-                    self.postStatus(loading: false, message: "Connection OK!")
+                    self.handleStatus(loading: false, message: "Connection OK!", success: true)
                 }
         }
     }
 
-    private func postStatus(loading: Bool, message: String? = nil) {
+    func clearStatus() {
+        if (UserDefaults.standard.string(forKey: "BookdumpStatus") != nil) {
+            UserDefaults.standard.removeObject(forKey: "BookdumpStatus")
+        }
+        let userInfo: [AnyHashable: Any] = ["TestSuccess": true]
+        NotificationCenter.default.post(name: Notification.Name("TestConnectionStatus"), object: nil, userInfo: userInfo)
+    }
+    
+    private func handleStatus(loading: Bool, message: String? = nil, success: Bool = false) {
+        postStatus(loading: loading, message: message, success: success)
+        let existingStatus = UserDefaults.standard.string(forKey: "BookdumpStatus")
+        if (success) {
+            if (existingStatus != nil) {
+                UserDefaults.standard.removeObject(forKey: "BookdumpStatus")
+            }
+        } else if (message != nil && message != existingStatus) {
+            UserDefaults.standard.set(message, forKey: "BookdumpStatus")
+        }
+    }
+    
+    private func postStatus(loading: Bool, message: String? = nil, success: Bool? = nil) {
         var userInfo: [AnyHashable: Any] = ["Loading": loading]
         if (message != nil) {
             userInfo["Message"] = message
+        }
+        if (success != nil) {
+            userInfo["TestSuccess"] = success
         }
         NotificationCenter.default.post(name: Notification.Name("TestConnectionStatus"), object: nil, userInfo: userInfo)
     }
