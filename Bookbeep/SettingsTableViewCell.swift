@@ -58,10 +58,6 @@ class SettingsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     @objc func settingsChanged(notification: NSNotification) {
         if (notification.userInfo?["BookdumpUrl"] != nil) {
             Bookdump.shared.clearStatus()

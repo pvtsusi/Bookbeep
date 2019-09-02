@@ -23,41 +23,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CKC-pj-aA1">
-                                <rect key="frame" x="70.5" y="418" width="179" height="100"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IP-XH-yBM">
-                                        <rect key="frame" x="42" y="0.0" width="95" height="50"/>
-                                        <state key="normal" title="Scan barcode"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xft-Cs-d3i">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem title="Scan a barcode" id="4nr-ph-ZCK">
                                         <connections>
-                                            <action selector="handleScannerPush:forEvent:" destination="l7u-ZM-WHJ" eventType="touchUpInside" id="gOC-4v-gYj"/>
+                                            <action selector="handleScannerPush:forEvent:" destination="l7u-ZM-WHJ" id="ux4-vh-pD2"/>
                                         </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jCM-ZR-vLC">
-                                        <rect key="frame" x="45.5" y="50" width="88" height="50"/>
-                                        <state key="normal" title="Take a photo"/>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="9PG-WV-M8a"/>
+                                    <barButtonItem title="Take a photo" id="CE3-xC-CuU">
                                         <connections>
-                                            <action selector="handleTakePhoto:" destination="l7u-ZM-WHJ" eventType="touchUpInside" id="Oea-ah-1He"/>
+                                            <action selector="handleTakePhoto:" destination="l7u-ZM-WHJ" id="Zq2-nQ-Acn"/>
                                         </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="179" id="7nX-iu-pOL"/>
-                                    <constraint firstAttribute="height" constant="100" id="ltb-zN-6Rd"/>
-                                </constraints>
-                            </stackView>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="kNU-Nn-l1D" firstAttribute="top" secondItem="CKC-pj-aA1" secondAttribute="bottom" constant="50" id="2rN-8t-Kb6"/>
-                            <constraint firstItem="CKC-pj-aA1" firstAttribute="centerX" secondItem="4hZ-wG-weU" secondAttribute="centerX" id="iUk-SK-Bto"/>
+                            <constraint firstItem="8NL-rw-eS2" firstAttribute="trailing" secondItem="xft-Cs-d3i" secondAttribute="trailing" id="0Jf-mw-OPO"/>
+                            <constraint firstItem="8NL-rw-eS2" firstAttribute="bottom" secondItem="xft-Cs-d3i" secondAttribute="bottom" id="90F-ix-L8g"/>
+                            <constraint firstItem="xft-Cs-d3i" firstAttribute="leading" secondItem="8NL-rw-eS2" secondAttribute="leading" id="XBG-RF-qlk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8NL-rw-eS2"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Barcode Scanner" id="UUc-vE-aWV"/>
+                    <navigationItem key="navigationItem" title="Bookbeep" id="UUc-vE-aWV"/>
                     <connections>
-                        <outlet property="photoButton" destination="jCM-ZR-vLC" id="8SG-l9-Fxm"/>
-                        <outlet property="pushScannerButton" destination="1IP-XH-yBM" id="Ca5-5K-CFs"/>
+                        <outlet property="photoButton" destination="CE3-xC-CuU" id="lOs-fR-pCc"/>
+                        <outlet property="pushScanerButton" destination="4nr-ph-ZCK" id="CKp-mK-v8B"/>
                         <segue destination="XGh-b4-Bou" kind="show" identifier="ShowSettings" id="Lth-11-GWD"/>
                     </connections>
                 </viewController>

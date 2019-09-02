@@ -14,8 +14,11 @@ import Alamofire_SwiftyJSON
 import InAppSettingsKit
 
 class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource {
-    @IBOutlet var pushScannerButton: UIButton!
-    @IBOutlet weak var photoButton: UIButton!
+//    @IBOutlet var pushScannerButton: UIBarButtonItem!
+//    @IBOutlet weak var photoButton: UIBarButtonItem!
+    
+    @IBOutlet weak var pushScanerButton: UIBarButtonItem!
+    @IBOutlet weak var photoButton: UIBarButtonItem!
     
     let tableview: UITableView = {
         let tv = UITableView()
@@ -45,6 +48,9 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
         NotificationCenter.default.addObserver(self, selector: #selector(updateConfiguredState), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateConfiguredState), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateConfiguredState), name: UserDefaults.didChangeNotification, object:nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(settingsChanged(notification:)), name: NSNotification.Name(rawValue: kIASKAppSettingChanged), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(settingsChanged(notification:)), name: Notification.Name("TestConnectionStatus"), object: nil)
+
     }
     
     deinit {
@@ -57,8 +63,36 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
             let configCell = cell as! SettingsTableViewCell
             configCell.settingsChanged()
         }
+        setConfigured(Bookdump.configured(), cell: nil)
     }
     
+    @objc func settingsChanged(notification: NSNotification) {
+        let cell = tableview.cellForRow(at: IndexPath(row: 0, section: 0)) as? SettingsTableViewCell
+        if (notification.userInfo?["BookdumpUrl"] != nil) {
+            Bookdump.shared.clearStatus()
+            let newUrl = notification.userInfo!["BookdumpUrl"] as! String
+            cell?.setLabel(newUrl)
+            setConfigured(Bookdump.configured(url: newUrl), cell: cell)
+        }
+        if (notification.userInfo?["BookdumpUser"] != nil) {
+            Bookdump.shared.clearStatus()
+            setConfigured(Bookdump.configured(user: notification.userInfo!["BookdumpUser"] as? String), cell: cell)
+        }
+        if (notification.userInfo?["BookdumpPass"] != nil) {
+            Bookdump.shared.clearStatus()
+            setConfigured(Bookdump.configured(pass: notification.userInfo!["BookdumpPass"] as? String), cell: cell)
+        }
+        if (notification.userInfo?["TestSuccess"] != nil) {
+            setConfigured(Bookdump.configured(testSuccess: notification.userInfo!["TestSuccess"] as? Bool), cell: cell)
+        }
+    }
+    
+    private func setConfigured(_ configured: Bool, cell: SettingsTableViewCell?) {
+        cell?.setConfigured(configured)
+        pushScanerButton.isEnabled = configured
+        photoButton.isEnabled = configured
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -96,8 +130,6 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
         cell.backgroundColor = UIColor.white
         cell.separatorInset.left = 0
         cell.accessoryType = .disclosureIndicator
-        NotificationCenter.default.addObserver(cell, selector: #selector(cell.settingsChanged(notification:)), name: NSNotification.Name(rawValue: kIASKAppSettingChanged), object: nil)
-        NotificationCenter.default.addObserver(cell, selector: #selector(cell.settingsChanged(notification:)), name: Notification.Name("TestConnectionStatus"), object: nil)
         return cell
     }
     
